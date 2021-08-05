@@ -8,7 +8,7 @@ public class Arredondamento {
     
     public static void main(String[] args){
         
-        double valor = 9.82727812;
+        double valor = 9.15;
         
         System.out.println("Inteiro mais próximo " + Math.round(valor));
         System.out.println("Inteiro do número = " + Math.floor(valor));
