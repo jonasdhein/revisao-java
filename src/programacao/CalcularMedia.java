@@ -8,9 +8,9 @@ public class CalcularMedia {
     
     public static void main(String[] args){
         int[] valores = new int[3];
-        valores[0] = 5;
-        valores[1] = 7;
-        valores[2] = 2;
+        valores[0] = 15;
+        valores[1] = 17;
+        valores[2] = 12;
         
         double retorno_media = media(valores);
         double media_arredondada = Arredondamento.arredondarValor(retorno_media);
