@@ -4,6 +4,11 @@ public class Revisao {
 
     public static void main(String[] args) {
         
+        Tools objeto = new Tools();
+        
+        objeto.verificaParImpar(5);
+        objeto.verificaParImpar(20);
+        
         //laço de repetição FOR -> Tabuada
         int tabuada = 6;
         for(int i = 0; i <= 10; i++){
