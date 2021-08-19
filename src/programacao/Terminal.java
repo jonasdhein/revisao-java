@@ -6,7 +6,6 @@
 package programacao;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import tools.CaixaDeDialogo;
 
@@ -24,7 +23,7 @@ public class Terminal extends javax.swing.JFrame {
     public Terminal() {
         initComponents();
         
-        conta1 = new Conta(1, 123, "Jonas", 700, 2000);
+        conta1 = new Conta(1, 123, "Jonas", -500, 2000);
         conta2 = new Conta(1, 333, "Juca", 1100, 2000);
         
         imprimeConta();
@@ -33,9 +32,19 @@ public class Terminal extends javax.swing.JFrame {
     public void imprimeConta(){
         try{
             lblNomeConta1.setText(conta1.getNomePessoa());
+            if(conta1.getSaldo() >= 0){
+                lblSaldoConta1.setForeground(new java.awt.Color(67, 160, 71));
+            }else{
+                lblSaldoConta1.setForeground(new java.awt.Color(244, 81, 30));
+            }
             lblSaldoConta1.setText(Tools.formataValor(conta1.getSaldo(), true));
             
             lblNomeConta2.setText(conta2.getNomePessoa());
+            if(conta2.getSaldo() >= 0){
+                lblSaldoConta2.setForeground(new java.awt.Color(67, 160, 71));
+            }else{
+                lblSaldoConta2.setForeground(new java.awt.Color(244, 81, 30));
+            }
             lblSaldoConta2.setText(Tools.formataValor(conta2.getSaldo(), true));
         
         }catch(Exception ex){
@@ -60,6 +69,7 @@ public class Terminal extends javax.swing.JFrame {
         lblSaldoConta1 = new javax.swing.JLabel();
         lblConta2 = new javax.swing.JLabel();
         lblSaldo1 = new javax.swing.JLabel();
+        btnTransferirConta1 = new javax.swing.JButton();
         jpnConta2 = new javax.swing.JPanel();
         btnDepositarConta2 = new javax.swing.JButton();
         lblNomeConta2 = new javax.swing.JLabel();
@@ -68,6 +78,7 @@ public class Terminal extends javax.swing.JFrame {
         lblSaldoConta2 = new javax.swing.JLabel();
         lblConta4 = new javax.swing.JLabel();
         lblSaldo3 = new javax.swing.JLabel();
+        btnTransferirConta2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,12 +102,20 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
+        lblSaldoConta1.setForeground(new java.awt.Color(0, 0, 204));
         lblSaldoConta1.setText("R$ xx");
 
         lblConta2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblConta2.setText("Conta:");
 
         lblSaldo1.setText("Saldo:");
+
+        btnTransferirConta1.setText("TRANSFERIR");
+        btnTransferirConta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirConta1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnConta1Layout = new javax.swing.GroupLayout(jpnConta1);
         jpnConta1.setLayout(jpnConta1Layout);
@@ -116,7 +135,8 @@ public class Terminal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jpnConta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSaldoConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNomeConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblNomeConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnTransferirConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jpnConta1Layout.setVerticalGroup(
@@ -135,7 +155,9 @@ public class Terminal extends javax.swing.JFrame {
                 .addComponent(btnSacarConta1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDepositarConta1)
-                .addGap(0, 44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTransferirConta1)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpnConta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 192));
@@ -159,12 +181,20 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
+        lblSaldoConta2.setForeground(new java.awt.Color(0, 51, 255));
         lblSaldoConta2.setText("R$ xx");
 
         lblConta4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblConta4.setText("Conta:");
 
         lblSaldo3.setText("Saldo:");
+
+        btnTransferirConta2.setText("TRANSFERIR");
+        btnTransferirConta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirConta2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnConta2Layout = new javax.swing.GroupLayout(jpnConta2);
         jpnConta2.setLayout(jpnConta2Layout);
@@ -184,7 +214,8 @@ public class Terminal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jpnConta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSaldoConta2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNomeConta2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblNomeConta2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnTransferirConta2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnConta2Layout.setVerticalGroup(
@@ -203,7 +234,9 @@ public class Terminal extends javax.swing.JFrame {
                 .addComponent(btnSacarConta2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDepositarConta2)
-                .addGap(0, 44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTransferirConta2)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpnConta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 11, -1, -1));
@@ -270,6 +303,14 @@ public class Terminal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSacarConta2ActionPerformed
 
+    private void btnTransferirConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirConta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTransferirConta1ActionPerformed
+
+    private void btnTransferirConta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirConta2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTransferirConta2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +357,8 @@ public class Terminal extends javax.swing.JFrame {
     private javax.swing.JButton btnDepositarConta2;
     private javax.swing.JButton btnSacarConta1;
     private javax.swing.JButton btnSacarConta2;
+    private javax.swing.JButton btnTransferirConta1;
+    private javax.swing.JButton btnTransferirConta2;
     private javax.swing.JPanel jpnConta1;
     private javax.swing.JPanel jpnConta2;
     private javax.swing.JLabel lblConta2;
