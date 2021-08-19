@@ -65,16 +65,20 @@ public class Conta {
         return "Conta: " + this.conta + " - Saldo: " + Tools.formataValor(this.saldo, true);
     }
     
-    public void sacar(double valor){
+    public boolean sacar(double valor){
         try{
             double resultado = this.saldo - valor;
             //não pode ultrapassar o cheque especial
-            if(resultado >= this.chequeEspecial){
+            if(resultado >= (this.chequeEspecial * -1)){
                 this.saldo -= valor;
+                return true;
+            }else{
+                return false;
             }
             
         }catch(Exception ex){
             System.err.println(ex.getMessage());
+            return false;
         }
     }
     

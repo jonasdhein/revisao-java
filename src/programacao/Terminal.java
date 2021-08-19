@@ -6,7 +6,9 @@
 package programacao;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import tools.CaixaDeDialogo;
 
 /**
  *
@@ -212,7 +214,14 @@ public class Terminal extends javax.swing.JFrame {
     private void btnSacarConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarConta1ActionPerformed
         try{
             double valor = Double.parseDouble(txtValorConta1.getText());
-            conta1.sacar(valor);
+            boolean operacao = conta1.sacar(valor);
+            if(operacao == true){
+                //saque deu certo
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Realizado", 'i');
+            }else{
+                //saque não realizado
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Não Realizado", 'e');
+            }
 
             imprimeConta();
             
@@ -248,7 +257,11 @@ public class Terminal extends javax.swing.JFrame {
     private void btnSacarConta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarConta2ActionPerformed
         try{
             double valor = Double.parseDouble(txtValorConta2.getText());
-            conta2.sacar(valor);
+            if(conta2.sacar(valor)){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Realizado", 'i');
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Saque Não Realizado", 'e');
+            }
 
             imprimeConta();
             
