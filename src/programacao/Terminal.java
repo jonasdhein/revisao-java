@@ -324,7 +324,6 @@ public class Terminal extends javax.swing.JFrame {
             
             double valor = Double.parseDouble(txtValorConta1.getText());
             boolean saque = conta2.sacar(valor);
-            conta1.deposito(valor);
             if(saque == true){
                 conta1.deposito(valor);
             }else{
