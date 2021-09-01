@@ -1,3 +1,5 @@
+package programacao;
+
 /*
  * Dialog.java
  *
@@ -7,7 +9,6 @@
  * and open the template in the editor.
  */
 
-package tools;
 import javax.swing.JOptionPane;
 /**
  *

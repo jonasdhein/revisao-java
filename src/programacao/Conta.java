@@ -73,7 +73,7 @@ public class Conta {
                 this.saldo -= valor;
                 return true;
             }else{
-                return false;
+                return false;//se não tiver saldo, não vai sacar
             }
             
         }catch(Exception ex){

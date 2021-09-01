@@ -5,9 +5,8 @@
  */
 package programacao;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
+//import com.formdev.flatlaf.FlatDarculaLaf;
 import javax.swing.UIManager;
-import tools.CaixaDeDialogo;
 
 /**
  *
@@ -52,6 +51,7 @@ public class Terminal extends javax.swing.JFrame {
         }
         
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,10 +157,10 @@ public class Terminal extends javax.swing.JFrame {
                 .addComponent(btnDepositarConta1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTransferirConta1)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpnConta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 192));
+        getContentPane().add(jpnConta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 230));
 
         jpnConta2.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta"));
 
@@ -236,10 +236,10 @@ public class Terminal extends javax.swing.JFrame {
                 .addComponent(btnDepositarConta2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTransferirConta2)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpnConta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 11, -1, -1));
+        getContentPane().add(jpnConta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 11, -1, 230));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -304,11 +304,36 @@ public class Terminal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSacarConta2ActionPerformed
 
     private void btnTransferirConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirConta1ActionPerformed
-        // TODO add your handling code here:
+        try{
+            
+            double valor = Double.parseDouble(txtValorConta1.getText());
+            boolean saque = conta1.sacar(valor);
+            if(saque == true){
+                conta2.deposito(valor);
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Sem saldo suficiente");
+            }
+            
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao tentar transferir");
+        }
     }//GEN-LAST:event_btnTransferirConta1ActionPerformed
 
     private void btnTransferirConta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirConta2ActionPerformed
-        // TODO add your handling code here:
+        try{
+            
+            double valor = Double.parseDouble(txtValorConta1.getText());
+            boolean saque = conta2.sacar(valor);
+            conta1.deposito(valor);
+            if(saque == true){
+                conta1.deposito(valor);
+            }else{
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Sem saldo suficiente");
+            }
+            
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao tentar transferir");
+        }
     }//GEN-LAST:event_btnTransferirConta2ActionPerformed
 
     /**
@@ -339,7 +364,7 @@ public class Terminal extends javax.swing.JFrame {
         //</editor-fold>
 
         try {
-            UIManager.setLookAndFeel( new FlatDarculaLaf() );
+            //UIManager.setLookAndFeel( new FlatDarculaLaf() );
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
